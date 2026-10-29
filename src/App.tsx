@@ -30,6 +30,7 @@ const AppContent: React.FC = () => {
   const [activeModalProduct, setActiveModalProduct] = useState<Product | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
 
@@ -155,10 +156,12 @@ const AppContent: React.FC = () => {
       <Footer />
 
       {/* Floating WhatsApp Action Button */}
-      <FloatingWhatsApp />
+      <FloatingWhatsApp isHidden={isChatOpen} />
 
       {/* AI Gifting Assistant Widget */}
       <GiftAssistantWidget
+        isOpen={isChatOpen}
+        onOpenChange={setIsChatOpen}
         onShowToast={showToast}
         onOpenProductModal={handleOpenProductModal}
       />
